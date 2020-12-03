@@ -14,9 +14,13 @@ import i18n from '../../i18n';
 
 const Notes = () => {
 
-    const changeLanguage = (lng: string) => {i18n.changeLanguage(lng); };
+    const changeLanguage = (lng: string) =>  {
+        dispatch(NotesStore.ChangeLanguage(lng));
+        i18n.changeLanguage(lng);   
+    };
     
     const NotesData = useSelector<ApplicationState, NotesStore.NotesState>(state => state.Notes);
+
     const dispatch = useDispatch();
 
     const [currentId, setCurrentId] = React.useState<number>(0)
@@ -25,11 +29,14 @@ const Notes = () => {
         dispatch(NotesStore.GetAll())
     }, [])
 
+    //React.useEffect(()=>{
+    //    i18n.changeLanguage(NotesData.selectedLanguage)
+    //},[NotesData.selectedLanguage]);
     const { addToast} = useToasts()
 
     const onDelete = (id: number) => {
             dispatch(NotesStore.Delete(id,
-                ()=> addToast("Deleted successfully", { appearance: 'info' })))
+                ()=> addToast(<Trans i18nKey="deleted"></Trans>, { appearance: 'info' })))
     }
 
     return (
@@ -37,9 +44,10 @@ const Notes = () => {
             <Grid container>
                 <Grid item xs={6}>
                     <NoteForm {...({currentId, setCurrentId})}/>
-                    <button onClick={() => changeLanguage('ru')}>ru</button>
+                    <p></p>
+                    <button onClick={() => changeLanguage('ru')}>ру</button>
                     <button onClick={() => changeLanguage('en')}>en</button>
-                    <button onClick={() => changeLanguage('ua')}>ua</button>
+                    <button onClick={() => changeLanguage('ua')}>укр</button>
                 </Grid>
                 <Grid item xs={6}>
                     <TableContainer>

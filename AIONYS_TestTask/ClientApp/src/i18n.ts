@@ -6,17 +6,38 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      description: "Description"
+      description: "Descriptions",
+      note: "Note",
+      text: "Note description",
+      eror: "This field is required",
+      submit: "Submit",
+      reset: "Reset",
+      submitted:"Submitted successfully", 
+      deleted: "Deleted successfully"
     }
   },
   ru: {
     translation: {
-      description: "Запись"
+      description: "Записи",
+      note: "Запись",
+      text: "Содержание записи",
+      eror: "Это поле обязательное",
+      submit: "Отрпавить",
+      reset: "Скинуть",
+      submitted:"Отправлено успешно",
+      deleted: "Удалено успешно"
     }
   },
   ua: {
     translation: {
-      description: "Допис"
+      description: "Дописи",
+      note: "Допис",
+      text: "Зміст допису",
+      eror: "Це поле обов'язкове",
+      submit: "Відпрваити",
+      reset: "Скинути",
+      submitted:"Відправлено успішно",
+      deleted: "Видалено успішно"
     }
   }
 };

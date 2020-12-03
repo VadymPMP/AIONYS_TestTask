@@ -8,6 +8,7 @@ import { useToasts } from "react-toast-notifications";
 
 import { ApplicationState } from '../../store';
 import * as NotesStore from '../../store/Notes'
+import { Trans } from 'react-i18next';
 
 const ValidateSchema = yup.object().shape({
     description: yup.string().required()
@@ -29,7 +30,8 @@ export const NoteForm = (props: PropsType) => {
 
     const { handleSubmit, errors, register, reset, setValue } = useForm<FormType>({
         resolver: yupResolver(ValidateSchema)
-    })
+    });
+    
 
     const { addToast } = useToasts()
 
@@ -37,7 +39,7 @@ export const NoteForm = (props: PropsType) => {
         const onSuccess = () => {
             reset(); 
             props.setCurrentId(0)
-            addToast("Submitted successfully", { appearance: 'success' })
+            addToast(<Trans i18nKey="submitted"></Trans>, { appearance: 'success' })
         }
         if (props.currentId === 0){
             dispatch(NotesStore.Create(values, onSuccess));
@@ -56,19 +58,20 @@ export const NoteForm = (props: PropsType) => {
 
     return (
         <form onSubmit={handleSubmit(OnSubmit)}>
-            <h1>Note</h1>
+            <h1><Trans i18nKey="note"></Trans></h1>
             <div>
-                <label>Note description</label>
+                <label><Trans i18nKey="text"></Trans></label>
                 <input name="description" ref={register}></input>
-                {errors.description && <p>This field is required</p>}
+                {errors.description && <p><Trans i18nKey="eror"></Trans></p>}
             </div>
+            <div><p></p></div>
             <div>
                 <Button type="submit" color="primary" variant="contained"
-                >Submit</Button>
+                ><Trans i18nKey="submit"></Trans></Button>
                 <Button
                     variant="contained"
                     onClick={() => { reset(); props.setCurrentId(0) }}
-                >Reset</Button>
+                ><Trans i18nKey="reset"></Trans></Button>
             </div>
         </form>)
 }

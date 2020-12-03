@@ -12,9 +12,12 @@ const REQUEST_DELETE_Note = 'REQUEST_DELETE_Note'
 const RECEIVE_DELETE_Note = 'RECEIVE_DELETE_Note'
 const REQUEST_UPDATE_Note = 'REQUEST_UPDATE_Note'
 const RECEIVE_UPDATE_Note = 'RECEIVE_UPDATE_Note'
+const CHANGE_Language = 'CHANGE_Language'
+
 
 export interface NotesState {
-    isLoading: boolean
+    isLoading: boolean,
+    selectedLanguage: string,
     Notes: Note[]
 }
 
@@ -25,6 +28,10 @@ export interface Note {
 
 //creators
 export const actionCreators = {
+    changeLanguage: (language: string) => ({
+        type: CHANGE_Language,
+        payload: language
+    } as const),
     requestNotes: () => ({
         type: REQUEST_Notes
     } as const),
@@ -59,6 +66,10 @@ type KnownAction = InferActionsTypes<typeof actionCreators>
 
 
 const API = api.RestAPI<Note>('notes/');
+
+export const ChangeLanguage = (language: string): AppThunkAction<KnownAction> => async (dispatch) => {
+    dispatch(actionCreators.changeLanguage(language));
+}
 
 export const GetAll = (): AppThunkAction<KnownAction> => async (dispatch) => {
 
@@ -103,7 +114,8 @@ export const Delete = (id: number, onSuccess: () => void): AppThunkAction<KnownA
 //reducer
 const unloadedState: NotesState = {
     isLoading: false,
-    Notes: []
+    Notes: [],
+    selectedLanguage: ""
 }
 
 export const reducer: Reducer<NotesState> = (state: NotesState | undefined, incomingAction: Action): NotesState => {
@@ -143,6 +155,12 @@ export const reducer: Reducer<NotesState> = (state: NotesState | undefined, inco
                 isLoading: false,
                 Notes: state.Notes.filter(x => x.id !== action.payload)
             }  
+        case CHANGE_Language:
+            return {
+                ...state,
+                isLoading: false,
+                selectedLanguage: action.payload
+            }
     }
     return {
         ...state

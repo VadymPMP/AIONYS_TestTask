@@ -22,13 +22,21 @@ namespace AIONYS_TestTask.Controllers
         }
 
         //GET: api/Notes
-       [HttpGet]
+        /// <summary>
+        /// We receive all your notes
+        /// </summary>
+        /// <returns>Notes</returns>
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Note>>> GetNotes()
         {
             return await _context.Notes.ToListAsync();
         }
 
         // GET: api/Notes/5
+        /// <summary>
+        /// We get one note per id
+        /// </summary>
+        /// <returns>Notes[id]</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<Note>> GetNote(int id)
         {
@@ -43,7 +51,12 @@ namespace AIONYS_TestTask.Controllers
         }
 
         // PUT: api/Notes/5
-
+        /// <summary>
+        /// Changes the note by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="note"></param>
+        /// <returns>Returns the server's response to the change</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutNote(int id, Note note)
         {
@@ -62,7 +75,11 @@ namespace AIONYS_TestTask.Controllers
         }
 
         // POST: api/Notes
-
+        /// <summary>
+        /// Creates a new row in the table Notes
+        /// </summary>
+        /// <param name="note"></param>
+        /// <returns>Returns the server's response to the change</returns>
         [HttpPost]
         public async Task<ActionResult<Note>> PostNote( Note note)
         {
@@ -76,6 +93,11 @@ namespace AIONYS_TestTask.Controllers
         }
 
         // DELETE: api/Notes/5
+        /// <summary>
+        /// Removes a specific row from the database for a specific ID element
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<ActionResult<Note>> DeleteNote(int id)
         {

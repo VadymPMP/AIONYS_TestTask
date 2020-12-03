@@ -29,6 +29,7 @@ namespace AIONYS_TestTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //Creates our database in RAM
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
             

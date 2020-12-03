@@ -17,6 +17,7 @@ namespace AIONYS_TestTask.Helpers
             Database.EnsureCreated();
         }
 
+        //Creates some fields in the database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Note>().HasData(
