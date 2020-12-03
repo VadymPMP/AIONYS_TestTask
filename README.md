@@ -22,7 +22,7 @@ To start the project (after installing all the required packages), enter the ter
 
 This will launch Frontend, which will contact Backend via HTTP requests and the page will display the data received from Backend.
 
-In order to run the test you need to create a new terminal, without the need to complete the work of either Backend or Fronted, and enter such a tape - "npm run test: e2e".
+In order to run the test you need to create a new terminal, without the need to complete the work of either Backend or Fronted, and enter such a tape - "npm run test:e2e".
 
 * If you have problems with this, then do not automatically install the library that is responsible for testing! In order to install it you need to enter the following command - "npm install cypress". After installation, repeat the previous step.
 
